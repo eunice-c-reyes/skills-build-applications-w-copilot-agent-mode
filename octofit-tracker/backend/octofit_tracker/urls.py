@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.shortcuts import redirect
 from rest_framework.routers import DefaultRouter
+from django.http import HttpResponse
 from .views import UserViewSet, TeamViewSet, ActivityViewSet, LeaderboardEntryViewSet, WorkoutViewSet, api_root
 import os
 
@@ -35,4 +36,5 @@ urlpatterns = [
     # API root returns available endpoints, with dynamic base URL for documentation
     path('api/', api_root, name='api-root'),
     path('api/', include(router.urls)),
+    path('-8000.app.github.dev/', lambda request: HttpResponse("GitHub Dev instance detected")),
 ]
