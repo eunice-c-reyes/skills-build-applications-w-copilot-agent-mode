@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.shortcuts import redirect
 from rest_framework.routers import DefaultRouter
 from .views import UserViewSet, TeamViewSet, ActivityViewSet, LeaderboardEntryViewSet, WorkoutViewSet, api_root
 import os
@@ -29,6 +30,7 @@ router.register(r'leaderboard', LeaderboardEntryViewSet)
 router.register(r'workouts', WorkoutViewSet)
 
 urlpatterns = [
+    path('', lambda request: redirect('/api/', permanent=False)),
     path('admin/', admin.site.urls),
     # API root returns available endpoints, with dynamic base URL for documentation
     path('api/', api_root, name='api-root'),
